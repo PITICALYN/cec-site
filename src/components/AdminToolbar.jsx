@@ -77,7 +77,7 @@ const AdminToolbar = () => {
         </button>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .admin-toolbar {
           position: fixed;
           top: 10px;

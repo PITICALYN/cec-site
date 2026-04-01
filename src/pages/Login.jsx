@@ -23,14 +23,17 @@ const Login = () => {
       });
 
       if (loginError) throw loginError;
-
-      // Verificação de usuário Master (webdesigner)
-      // Supondo qwebdesigner seja o username do email cadastrado
-      if (data.user.email.includes('webdesigner')) {
-        console.log("Logged as master!");
+      
+      // Lógica de Redirecionamento
+      if (data.user.email === 'webdesigner@cec.com.br') {
+        console.log("Acesso Webdesigner - Modo Edição Habilitado");
+        navigate('/');
+      } else {
+        // Aluno - Futuramente redirecionar para o outro sistema
+        // Por enquanto, vamos manter na Home logado
+        console.log("Acesso Aluno - Redirecionando para Dashboard");
+        navigate('/'); 
       }
-
-      navigate('/'); // Redireciona para home onde o toolbar vai aparecer
     } catch (err) {
       setError('Credenciais inválidas. Verifique seu e-mail e senha.');
       console.error(err);
@@ -94,7 +97,7 @@ const Login = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .login-container {
           min-height: 100vh;
           display: flex;

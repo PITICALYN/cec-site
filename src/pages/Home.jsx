@@ -8,12 +8,9 @@ import Footer from '../components/Footer';
 import Testimonials from '../components/Testimonials';
 import ReviewNotifier from '../components/ReviewNotifier';
 import WhatsAppButton from '../components/WhatsAppButton';
-import AdminToolbar from '../components/AdminToolbar';
-
 const Home = () => {
   return (
     <div className="home-page">
-      <AdminToolbar />
       <Navbar />
       <Hero />
       <Stats />

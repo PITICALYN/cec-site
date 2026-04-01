@@ -15,9 +15,12 @@ import Complaint from './pages/Complaint';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 
+import AdminToolbar from './components/AdminToolbar';
+
 function App() {
   return (
     <EditProvider>
+      <AdminToolbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

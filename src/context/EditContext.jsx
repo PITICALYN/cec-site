@@ -136,8 +136,8 @@ export const EditProvider = ({ children }) => {
     setIsEditing(!isEditing);
   };
 
-  // Verificação de Master User
-  const isMaster = user?.email?.includes('webdesigner');
+  // Verificação de Master User (Webdesigner)
+  const isMaster = user?.email === 'webdesigner@cec.com.br';
 
   return (
     <EditContext.Provider value={{ 
