@@ -1,0 +1,123 @@
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../lib/supabaseClient';
+import initialContent from '../data/content.json';
+
+const EditContext = createContext();
+
+export const useEdit = () => useContext(EditContext);
+
+export const EditProvider = ({ children }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [content, setContent] = useState(initialContent);
+
+  // 1. Carregar Sessão e Dados Iniciais
+  useEffect(() => {
+    // Monitorar Mudanças de Autenticação
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    // Buscar Conteúdo do Banco de Dados
+    fetchSiteContent();
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const fetchSiteContent = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('site_content')
+        .select('data')
+        .eq('id', 'main-content')
+        .single();
+
+      if (error) {
+        console.warn('Usando conteúdo local (tabela site_content não encontrada ou vazia).');
+      } else if (data) {
+        setContent(data.data);
+      }
+    } catch (err) {
+      console.error('Erro ao buscar conteúdo:', err);
+    }
+  };
+
+  const updateContent = (path, value) => {
+    const newContent = { ...content };
+    const parts = path.split('.');
+    let current = newContent;
+    
+    for (let i = 0; i < parts.length - 1; i++) {
+      current = current[parts[i]];
+    }
+    
+    current[parts[parts.length - 1]] = value;
+    setContent(newContent);
+  };
+
+  const saveChanges = async () => {
+    if (!user) {
+      alert('Você precisa estar logado para salvar as alterações.');
+      return;
+    }
+
+    try {
+      // Salvar no Supabase (tabela site_content)
+      const { error } = await supabase
+        .from('site_content')
+        .upsert({ id: 'main-content', data: content });
+
+      if (error) throw error;
+
+      setIsEditing(false);
+      alert('Site atualizado com sucesso no banco de dados!');
+    } catch (err) {
+      console.error('Erro ao salvar no banco:', err);
+      // Fallback para localStorage se o banco falhar
+      localStorage.setItem('cec_content_backup', JSON.stringify(content));
+      alert('Erro ao salvar no servidor. Uma cópia de emergência foi salva no seu navegador.');
+    }
+  };
+
+  const discardChanges = () => {
+    fetchSiteContent();
+    setIsEditing(false);
+  };
+
+  const logout = async () => {
+    await supabase.auth.signOut();
+    setIsEditing(false);
+    window.location.href = '/';
+  };
+
+  const toggleEditing = () => {
+    if (!user) {
+      window.location.href = '/login';
+      return;
+    }
+    setIsEditing(!isEditing);
+  };
+
+  // Verificação de Master User
+  const isMaster = user?.email?.includes('webdesigner');
+
+  return (
+    <EditContext.Provider value={{ 
+      user,
+      isAdmin: !!user,
+      isMaster,
+      isEditing, 
+      content, 
+      updateContent, 
+      saveChanges, 
+      discardChanges,
+      toggleEditing,
+      logout,
+      loading
+    }}>
+      {children}
+    </EditContext.Provider>
+  );
+};
