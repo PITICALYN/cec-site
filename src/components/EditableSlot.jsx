@@ -35,9 +35,12 @@ const EditableSlot = ({ path, initialValue, className = "", tagName: Tag = "div"
       return (
         <img 
           src={imgSrc} 
-          alt="Editable content" 
+          alt="CEC" 
           className={`slot-img ${className}`}
           style={{ ...style, objectFit: 'contain' }}
+          onError={(e) => {
+            e.target.style.display = 'none';
+          }}
         />
       );
     }
