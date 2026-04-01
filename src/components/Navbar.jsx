@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { User, Menu } from 'lucide-react';
+import { User, Menu, Camera, Share2 } from 'lucide-react';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
 import EditableSlot from './EditableSlot';
@@ -28,21 +28,30 @@ const Navbar = () => {
           />
         </div>
         
-        {/* Menu e outras ações permanecem os mesmos */}
         <ul className="nav-links">
           {navbar.links.map((link, index) => (
             <li key={index}>
-              <a href={`#${link.toLowerCase().replace(/\s+/g, '')}`}>
+              <Link to={link === 'Home' ? '/' : `/${link.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '-')}`}>
                 <EditableText 
                   path={`navbar.links.${index}`} 
                   initialValue={link} 
                 />
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="nav-actions">
+          {/* Redes Sociais Dinâmicas */}
+          <div className="social-links-nav">
+            <a href={navbar.social?.instagram} target="_blank" rel="noopener noreferrer" className="social-btn" title="Instagram">
+              <Camera size={18} />
+            </a>
+            <a href={navbar.social?.linkedin} target="_blank" rel="noopener noreferrer" className="social-btn" title="LinkedIn">
+              <Share2 size={18} />
+            </a>
+          </div>
+
           <Link to="/login" className="btn-login">
             <User size={18} />
             <EditableText 
@@ -50,12 +59,12 @@ const Navbar = () => {
               initialValue={navbar.actions.login} 
             />
           </Link>
-          <button className="btn-primary">
+          <Link to="/matricula" className="btn-primary btn-nav-cta">
             <EditableText 
               path="navbar.actions.cta" 
               initialValue={navbar.actions.cta} 
             />
-          </button>
+          </Link>
           <button className="mobile-menu">
             <Menu size={24} />
           </button>
@@ -63,6 +72,33 @@ const Navbar = () => {
       </div>
 
       <style jsx>{`
+        .social-links-nav {
+          display: flex;
+          gap: 0.75rem;
+          margin-right: 1rem;
+          padding-right: 1.5rem;
+          border-right: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .social-btn {
+          width: 34px;
+          height: 34px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: rgba(0, 75, 73, 0.05);
+          color: var(--primary);
+          transition: all 0.3s ease;
+        }
+        .social-btn:hover {
+          background: var(--primary);
+          color: white;
+          transform: translateY(-2px);
+        }
+        .btn-nav-cta {
+          padding: 0.6rem 1.25rem;
+          font-size: 0.85rem;
+        }
         .sticky-nav {
           position: sticky;
           top: 0;

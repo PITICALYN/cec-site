@@ -1,5 +1,5 @@
-import React from 'react';
-import { Mail, Globe, Users, Share2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Mail, Camera, Share2, Star, MapPin, FileText } from 'lucide-react';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
 
@@ -33,35 +33,27 @@ const Footer = () => {
             />
           </div>
           <div className="social-links">
-            <a href="#"><Globe size={20} /></a>
-            <a href="#"><Users size={20} /></a>
-            <a href="#"><Share2 size={20} /></a>
+            <a href={navbar.social?.instagram} target="_blank" rel="noopener noreferrer"><Camera size={20} /></a>
+            <a href={navbar.social?.linkedin} target="_blank" rel="noopener noreferrer"><Share2 size={20} /></a>
           </div>
         </div>
 
         <div className="footer-links">
           <h4>Links Rápidos</h4>
           <ul>
-            {navbar.links.map((link, index) => (
-              <li key={index}>
-                <a href={`#${link.toLowerCase().replace(/\s+/g, '')}`}>
-                  <EditableText 
-                    path={`navbar.links.${index}`} 
-                    initialValue={link} 
-                  />
-                </a>
-              </li>
-            ))}
+            <li><Link to="/">Início</Link></li>
+            <li><Link to="/cursos">Treinamentos</Link></li>
+            <li><Link to="/sobre-nos">Sobre Nós</Link></li>
+            <li><Link to="/contato">Fale Conosco</Link></li>
           </ul>
         </div>
 
         <div className="footer-legal">
-          <h4>Legal</h4>
+          <h4>Institucional</h4>
           <ul>
-            <li><a href="#">Termos de Uso</a></li>
-            <li><a href="#">Política de Privacidade</a></li>
-            <li><a href="#">Trabalhe Conosco</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><Link to="/termos">Termos de Uso</Link></li>
+            <li><Link to="/privacidade">Política de Privacidade</Link></li>
+            <li><Link to="/ouvidoria">Canal de Ouvidoria</Link></li>
           </ul>
         </div>
 
@@ -72,11 +64,13 @@ const Footer = () => {
               initialValue={footer.newsletter.title} 
             />
           </h4>
-          <EditableText 
-            path="footer.newsletter.text" 
-            initialValue={footer.newsletter.text} 
-            tagName="p" 
-          />
+          <div className="newsletter-desc">
+            <EditableText 
+              path="footer.newsletter.text" 
+              initialValue={footer.newsletter.text} 
+              tagName="p" 
+            />
+          </div>
           <div className="newsletter-input">
             <input type="email" placeholder="Seu e-mail" />
             <button className="btn-send">
@@ -94,8 +88,14 @@ const Footer = () => {
             tagName="p" 
           />
           <div className="bottom-info">
-            <span>CNPJ: 00.000.000/0001-00</span>
-            <span>Macaé, RJ</span>
+            <div className="info-item">
+              <FileText size={14} />
+              <EditableText path="footer.cnpj" initialValue="CNPJ: 00.000.000/0001-00" />
+            </div>
+            <div className="info-item">
+              <MapPin size={14} />
+              <EditableText path="footer.address" initialValue="Rio de Janeiro, RJ" />
+            </div>
           </div>
         </div>
       </div>

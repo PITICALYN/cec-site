@@ -4,6 +4,10 @@
     "sublogo": "Engenharia",
     "logo_img": "logo_oficial.png",
     "links": ["Home", "Cursos", "Sobre Nós", "Contato"],
+    "social": {
+      "instagram": "https://cecengenhariaecapacitacao.com/treinamentos/",
+      "linkedin": "https://linkedin.com/company/cec-engenharia"
+    },
     "actions": {
       "login": "Acesso Aluno",
       "cta": "Matricule-se"
@@ -21,6 +25,58 @@
       "title": "CERTIFICAÇÃO RECONHECIDA",
       "text": "Diplomas válidos em todo território nacional."
     }
+  },
+  "about_page": {
+    "title": "Quem Somos",
+    "content": "A C&C Engenharia e Capacitação foi fundada com o propósito de preencher uma lacuna crítica no mercado de qualificação e capacitação industrial, especialmente nas áreas de caldeiraria e tubulação. Desde sua fundação, a empresa tem se dedicado a oferecer treinamentos de alta qualidade, reconhecidos por sua excelência técnica e alinhados às necessidades reais da indústria.",
+    "mission": {
+      "title": "Missão",
+      "text": "Nossa missão é capacitar profissionais com o conhecimento e as habilidades necessárias para desempenhar suas funções com precisão e segurança, contribuindo para o sucesso de projetos industriais em todo o Brasil."
+    },
+    "vision": {
+      "title": "Visão",
+      "text": "Ser referência nacional em treinamento e qualificação industrial, reconhecida pela Abendi e por nossos parceiros, como uma empresa que promove a excelência técnica e a inovação no setor."
+    },
+    "values": {
+      "title": "Valores",
+      "list": [
+        {
+          "title": "Compromisso com a Qualidade",
+          "text": "Garantimos que todos os nossos cursos atendam aos mais altos padrões de ensino e prática industrial."
+        },
+        {
+          "title": "Ética e Integridade",
+          "text": "Agimos com transparência e respeito em todas as nossas relações, tanto com nossos clientes quanto com nossos colaboradores."
+        },
+        {
+          "title": "Inovação Contínua",
+          "text": "Buscamos constantemente novas metodologias e tecnologias para aprimorar nossos treinamentos e oferecer as melhores soluções aos nossos alunos."
+        },
+        {
+          "title": "Foco no Aluno",
+          "text": "O sucesso dos nossos alunos é o nosso principal objetivo. Estamos comprometidos em oferecer um ambiente de aprendizado que estimule o desenvolvimento profissional e pessoal."
+        }
+      ]
+    },
+    "quote": "Deixe o conhecimento libertar você!"
+  },
+  "terms_page": {
+    "title": "Termos de Uso",
+    "content": "C&C Engenharia e Capacitação, pessoa jurídica de direito privado descreve, através deste documento, as regras de uso do site https://cecengenhariaecapacitacao.com.br e qualquer outro site, loja ou aplicativo operado pelo proprietário.\n\nAo navegar neste website, consideramos que você está de acordo com os Termos de Uso abaixo.\n\nCaso você não esteja de acordo com as condições deste contrato, pedimos que não faça mais uso deste website, muito menos cadastre-se ou envie os seus dados pessoais."
+  },
+  "privacy_page": {
+    "title": "Política de Privacidade",
+    "content": "A C&C Engenharia e Capacitação, pessoa jurídica de direito privado, leva a sua privacidade a sério e zela pela segurança e proteção de dados de todos os seus clientes, parceiros, fornecedores e usuários."
+  },
+  "contact_page": {
+    "title": "Fale Conosco",
+    "subtitle": "Estamos prontos para tirar suas dúvidas e ajudar na sua carreira.",
+    "whatsapp_direct": "+5521965554180"
+  },
+  "complaint_page": {
+    "title": "Canal de Ouvidoria",
+    "subtitle": "Sua voz é importante para nossa evolução. Reclamações são tratadas diretamente pela diretoria.",
+    "whatsapp_admin": "+5521965554180"
   },
   "courses_section": {
     "title": "Nossas Formações",
@@ -86,10 +142,6 @@
       "text": "Receba novidades sobre novos treinamentos e cursos."
     },
     "copyright": "© 2026 CEC Engenharia e Capacitação. Todos os direitos reservados.",
-    "whatsapp": {
-      "number": "+5521965554180",
-      "message": "Olá! Gostaria de saber mais sobre os cursos da CEC Engenharia.",
-      "tooltip": "Como podemos ajudar hoje?"
-    }
+    "links_institucional": ["Sobre Nós", "Termos de Uso", "Política de Privacidade", "Ouvidoria"]
   }
 }
