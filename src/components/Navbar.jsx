@@ -2,7 +2,7 @@ import React from 'react';
 import { User, Menu } from 'lucide-react';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
-import EditableImage from './EditableImage';
+import EditableSlot from './EditableSlot';
 
 const Navbar = () => {
   const { content } = useEdit();
@@ -12,11 +12,19 @@ const Navbar = () => {
     <nav className="glass sticky-nav">
       <div className="container nav-content">
         <div className="logo-container-liquid">
-          <EditableImage 
+          <EditableSlot 
             path="navbar.logo_img" 
             initialValue={navbar.logo_img} 
             className="logo-img-main"
-            alt="CEC Engenharia Logo"
+            tagName="h1"
+            style={{ 
+              fontSize: '1.5rem', 
+              fontWeight: '800', 
+              color: 'var(--primary)',
+              margin: '0',
+              textAlign: 'center',
+              width: '100%'
+            }}
           />
         </div>
         

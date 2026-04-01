@@ -3,7 +3,7 @@ import { ArrowRight, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
-import EditableImage from './EditableImage';
+import EditableSlot from './EditableSlot';
 
 const Hero = () => {
   const { content } = useEdit();
@@ -71,11 +71,22 @@ const Hero = () => {
         >
           <div className="media-wrapper">
             <div className="glow-ring"></div>
-            <EditableImage 
+            <EditableSlot 
               path="hero.image" 
               initialValue={hero.image} 
               className="hero-img" 
-              alt="Engenharia Industrial" 
+              tagName="div"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'var(--primary-dark)',
+                color: 'white',
+                fontSize: '2rem',
+                borderRadius: '1.5rem',
+                textAlign: 'center',
+                padding: '2rem'
+              }}
             />
             <div className="floating-card">
               <CheckCircle className="icon-success" />
@@ -93,13 +104,20 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Selo Abendi Independente para não obstruir a foto */}
+            {/* Selo Abendi Híbrido (Texto ou Imagem) */}
             <div className="cert-badge-floating">
-              <EditableImage 
+              <EditableSlot 
                 path="hero.cert_badge" 
                 initialValue={hero.cert_badge} 
                 className="cert-badge-img"
-                alt="Selo Abendi"
+                tagName="span"
+                style={{
+                  fontSize: '0.7rem',
+                  fontWeight: '700',
+                  color: 'var(--primary)',
+                  textAlign: 'center',
+                  display: 'block'
+                }}
               />
             </div>
           </div>
