@@ -27,10 +27,11 @@ const EditableSlot = ({ path, initialValue, className = "", tagName: Tag = "div"
   const renderContent = () => {
     if (content.type === 'image') {
       // Resolve caminhos relativos para imagens internas
-      const baseUrl = import.meta.env.BASE_URL || '/';
+      const baseUrl = (import.meta.env.BASE_URL || '/').replace(/\/$/, "");
+      const fileName = content.value.startsWith('/') ? content.value.substring(1) : content.value;
       const imgSrc = content.value.startsWith('http') || content.value.startsWith('data:')
         ? content.value 
-        : `${baseUrl}${content.value.startsWith('/') ? content.value.substring(1) : content.value}`;
+        : `${baseUrl}/${fileName}`;
 
       return (
         <img 
