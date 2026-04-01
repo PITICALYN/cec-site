@@ -44,17 +44,17 @@ const AdminToolbar = () => {
             </button>
             
             {/* Atalho para Gestão de Usuários (Apenas Master) */}
+            <Link to="/admin/testimonials" className="action-btn-highlight" title="Gerenciar Depoimentos Pendentes">
+              <Star size={18} fill="#ffcc00" color="#ffcc00" />
+              <span style={{ color: '#ffcc00', fontWeight: '800' }}>MODERAR DEPOIMENTOS</span>
+            </Link>
+            
             {isMaster && (
               <Link to="/admin/usuarios" className="btn-admin-users" title="Gerenciar Usuários">
                 <Users size={16} />
                 <span>Usuários</span>
               </Link>
             )}
-
-            <Link to="/admin/testimonials" className="btn-admin-users" title="Gerenciar Depoimentos">
-              <Star size={16} />
-              <span>Depoimentos</span>
-            </Link>
 
             <button className="btn-admin-logout" onClick={logout} title="Sair do sistema">
               <LogOut size={16} />

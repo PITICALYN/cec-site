@@ -77,15 +77,10 @@ const Hero = () => {
               className="hero-img" 
               tagName="div"
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'var(--primary-dark)',
-                color: 'white',
-                fontSize: '2rem',
+                width: '100%',
+                height: '100%',
                 borderRadius: '1.5rem',
-                textAlign: 'center',
-                padding: '2rem'
+                overflow: 'hidden'
               }}
             />
             <div className="floating-card">
