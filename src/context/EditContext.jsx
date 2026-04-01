@@ -36,8 +36,12 @@ export const EditProvider = ({ children }) => {
 
       if (error) {
         console.warn('Usando conteúdo local (tabela site_content não encontrada ou vazia).');
-      } else if (data) {
-        setContent(data.data);
+      } else if (data && data.data) {
+        // Fusão inteligente: mantém o que tem no local e sobrepõe apenas o que vem do banco
+        setContent(prev => ({
+          ...prev,
+          ...data.data
+        }));
       }
     } catch (err) {
       console.error('Erro ao buscar conteúdo:', err);
