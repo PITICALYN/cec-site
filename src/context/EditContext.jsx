@@ -45,16 +45,48 @@ export const EditProvider = ({ children }) => {
   };
 
   const updateContent = (path, value) => {
-    const newContent = { ...content };
-    const parts = path.split('.');
-    let current = newContent;
-    
-    for (let i = 0; i < parts.length - 1; i++) {
-      current = current[parts[i]];
-    }
-    
-    current[parts[parts.length - 1]] = value;
-    setContent(newContent);
+    setContent(prev => {
+      const newContent = JSON.parse(JSON.stringify(prev));
+      const keys = path.split('.');
+      let current = newContent;
+      for (let i = 0; i < keys.length - 1; i++) {
+        current = current[keys[i]];
+      }
+      current[keys[keys.length - 1]] = value;
+      return newContent;
+    });
+  };
+
+  const addItemToList = (path, newItem) => {
+    setContent(prev => {
+      const newContent = JSON.parse(JSON.stringify(prev));
+      const keys = path.split('.');
+      let current = newContent;
+      for (let i = 0; i < keys.length - 1; i++) {
+        current = current[keys[i]];
+      }
+      const list = current[keys[keys.length - 1]];
+      if (Array.isArray(list)) {
+        list.push({ ...newItem, id: Date.now() });
+      }
+      return newContent;
+    });
+  };
+
+  const removeItemFromList = (path, index) => {
+    setContent(prev => {
+      const newContent = JSON.parse(JSON.stringify(prev));
+      const keys = path.split('.');
+      let current = newContent;
+      for (let i = 0; i < keys.length - 1; i++) {
+        current = current[keys[i]];
+      }
+      const list = current[keys[keys.length - 1]];
+      if (Array.isArray(list)) {
+        list.splice(index, 1);
+      }
+      return newContent;
+    });
   };
 
   const saveChanges = async () => {

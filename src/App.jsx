@@ -14,19 +14,19 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         
-        {/* Painel de Edição Protegido */}
+        {/* Painel Administrativo de Depoimentos */}
         <Route 
-          path="/admin" 
+          path="/admin/testimonials" 
           element={
             <ProtectedRoute>
-              <Home />
+              <ManageTestimonials />
             </ProtectedRoute>
           } 
         />
 
         {/* Gestão de Usuários (Apenas Master Admin) */}
         <Route 
-          path="/admin/usuarios" 
+          path="/admin/users" 
           element={
             <ProtectedRoute requireMaster={true}>
               <ManageUsers />
