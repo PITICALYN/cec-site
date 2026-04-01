@@ -26,9 +26,15 @@ const EditableSlot = ({ path, initialValue, className = "", tagName: Tag = "div"
 
   const renderContent = () => {
     if (content.type === 'image') {
+      // Resolve caminhos relativos para imagens internas
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const imgSrc = content.value.startsWith('http') || content.value.startsWith('data:')
+        ? content.value 
+        : `${baseUrl}${content.value.startsWith('/') ? content.value.substring(1) : content.value}`;
+
       return (
         <img 
-          src={content.value} 
+          src={imgSrc} 
           alt="Editable content" 
           className={`slot-img ${className}`}
           style={{ ...style, objectFit: 'contain' }}

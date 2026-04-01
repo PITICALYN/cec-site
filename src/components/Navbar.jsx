@@ -1,4 +1,4 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import { User, Menu } from 'lucide-react';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
@@ -43,13 +43,13 @@ const Navbar = () => {
         </ul>
 
         <div className="nav-actions">
-          <a href="#" className="btn-login">
+          <Link to="/login" className="btn-login">
             <User size={18} />
             <EditableText 
               path="navbar.actions.login" 
               initialValue={navbar.actions.login} 
             />
-          </a>
+          </Link>
           <button className="btn-primary">
             <EditableText 
               path="navbar.actions.cta" 
