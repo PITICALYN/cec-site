@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Settings, Save, X, Edit3, Trash2, LogOut, ShieldCheck, Users } from 'lucide-react';
+import { Settings, Save, X, Edit3, Trash2, LogOut, ShieldCheck, Users, Star } from 'lucide-react';
 import { useEdit } from '../context/EditContext';
 
 const AdminToolbar = () => {
@@ -50,6 +50,11 @@ const AdminToolbar = () => {
                 <span>Usuários</span>
               </Link>
             )}
+
+            <Link to="/admin/testimonials" className="btn-admin-users" title="Gerenciar Depoimentos">
+              <Star size={16} />
+              <span>Depoimentos</span>
+            </Link>
 
             <button className="btn-admin-logout" onClick={logout} title="Sair do sistema">
               <LogOut size={16} />

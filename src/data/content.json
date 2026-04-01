@@ -85,6 +85,11 @@
       "title": "Newsletter",
       "text": "Receba novidades sobre novos treinamentos e cursos."
     },
-    "copyright": "© 2026 CEC Engenharia e Capacitação. Todos os direitos reservados."
+    "copyright": "© 2026 CEC Engenharia e Capacitação. Todos os direitos reservados.",
+    "whatsapp": {
+      "number": "+5521965554180",
+      "message": "Olá! Gostaria de saber mais sobre os cursos da CEC Engenharia.",
+      "tooltip": "Como podemos ajudar hoje?"
+    }
   }
 }
