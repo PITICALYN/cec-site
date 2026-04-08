@@ -22,11 +22,19 @@ const Login = () => {
         password,
       });
 
-      if (loginError) throw loginError;
+      if (loginError) {
+        if (loginError.message.includes('Email not confirmed')) {
+          setError('E-mail ainda não confirmado no Supabase. Por favor, desmarque "Confirm Email" nas configurações do Auth.');
+        } else {
+          throw loginError;
+        }
+        return;
+      }
       
       // Lógica de Redirecionamento
-      if (data.user.email === 'webdesigner@cec.com.br') {
-        console.log("Acesso Webdesigner - Modo Edição Habilitado");
+      const masterEmails = ['webdesigner@cec.com.br', 'admin@cec.com.br'];
+      if (masterEmails.includes(data.user.email)) {
+        console.log("Acesso Administrativo - Modo Edição Habilitado");
         navigate('/');
       } else {
         // Aluno - Futuramente redirecionar para o outro sistema
