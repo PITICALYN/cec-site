@@ -119,7 +119,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .hero-section {
           padding-top: 5rem;
           padding-bottom: 5rem;

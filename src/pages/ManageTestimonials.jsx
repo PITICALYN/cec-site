@@ -27,6 +27,7 @@ const ManageTestimonials = () => {
       const { data, error } = await supabase
         .from('testimonials')
         .select('*')
+        .order('order_position', { ascending: true, nullsFirst: false })
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -36,6 +37,22 @@ const ManageTestimonials = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleMoveOrder = async (id, direction) => {
+    const idx = testimonials.findIndex(t => t.id === id);
+    const swapIdx = direction === 'up' ? idx - 1 : idx + 1;
+    if (swapIdx < 0 || swapIdx >= testimonials.length) return;
+
+    const reordered = [...testimonials];
+    [reordered[idx], reordered[swapIdx]] = [reordered[swapIdx], reordered[idx]];
+
+    // Atualizar order_position de todos
+    const updates = reordered.map((t, i) => 
+      supabase.from('testimonials').update({ order_position: i + 1 }).eq('id', t.id)
+    );
+    await Promise.all(updates);
+    setTestimonials(reordered);
   };
 
   const handleStatusChange = async (id, newStatus) => {
@@ -170,6 +187,7 @@ const ManageTestimonials = () => {
               <table className="admin-table">
                 <thead>
                   <tr>
+                    <th>Ordem</th>
                     <th>Aluno/Tipo</th>
                     <th>Conteúdo / Print</th>
                     <th>Status</th>
@@ -179,6 +197,12 @@ const ManageTestimonials = () => {
                 <tbody>
                   {testimonials.map(t => (
                     <tr key={t.id} className={t.status === 'pending' ? 'row-pending' : ''}>
+                      <td>
+                        <div className="order-buttons">
+                          <button className="order-btn" onClick={() => handleMoveOrder(t.id, 'up')} title="Mover para cima">↑</button>
+                          <button className="order-btn" onClick={() => handleMoveOrder(t.id, 'down')} title="Mover para baixo">↓</button>
+                        </div>
+                      </td>
                       <td>
                         <div className="user-cell">
                           <strong>{t.name}</strong>
@@ -225,10 +249,19 @@ const ManageTestimonials = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .testimonials-admin { padding-top: 80px; min-height: 100vh; background: #f8fafc; }
-        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
         .admin-header h1 { color: var(--primary-dark); margin: 0; }
+
+        .order-buttons { display: flex; flex-direction: column; gap: 2px; }
+        .order-btn {
+          background: #f1f5f9; border: 1px solid #e2e8f0; color: var(--primary);
+          width: 26px; height: 26px; border-radius: 6px; cursor: pointer;
+          font-size: 0.85rem; display: flex; align-items: center; justify-content: center;
+          transition: all 0.15s;
+        }
+        .order-btn:hover { background: var(--primary); color: white; }
         .btn-add { 
           display: flex; align-items: center; gap: 0.5rem; 
           background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 12px; cursor: pointer;

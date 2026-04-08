@@ -74,3 +74,6 @@ VALUES
 ('Ricardo Souza', 'Inspetor Dimensional', 'Curso excelente! A parte prática com a Estação Total mudou meu patamar profissional.', 'approved', '2026-02-15'),
 ('Mariana Costa', 'Caldeiraria e Tubulação', 'Instrutores de altíssimo nível. A CEC realmente prepara para o mercado.', 'approved', '2026-03-01')
 ON CONFLICT DO NOTHING;
+
+-- 4. Coluna de ordenação manual dos depoimentos
+ALTER TABLE public.testimonials ADD COLUMN IF NOT EXISTS order_position INTEGER;

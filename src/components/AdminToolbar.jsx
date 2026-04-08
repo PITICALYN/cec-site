@@ -50,7 +50,7 @@ const AdminToolbar = () => {
             </Link>
             
             {isMaster && (
-              <Link to="/admin/usuarios" className="btn-admin-users" title="Gerenciar Usuários">
+              <Link to="/admin/users" className="btn-admin-users" title="Gerenciar Usuários">
                 <Users size={16} />
                 <span>Usuários</span>
               </Link>

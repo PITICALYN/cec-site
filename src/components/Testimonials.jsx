@@ -128,20 +128,18 @@ const Testimonials = () => {
               </motion.div>
             ))}
 
-            {/* Placeholder / Botão de Envio */}
-            {!isEditing && (
-              <motion.div 
-                className="testimonial-card add-testimonial-card"
-                onClick={() => setShowModal(true)}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="add-content">
-                  <MessageSquarePlus size={40} className="icon-plus" />
-                  <h4>Sua vez de avaliar!</h4>
-                  <p>Compartilhe sua experiência conosco.</p>
-                </div>
-              </motion.div>
-            )}
+            {/* Botão de envio - sempre visível para visitantes */}
+            <motion.div 
+              className="testimonial-card add-testimonial-card"
+              onClick={() => setShowModal(true)}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="add-content">
+                <MessageSquarePlus size={40} className="icon-plus" />
+                <h4>Sua vez de avaliar!</h4>
+                <p>Compartilhe sua experiência conosco.</p>
+              </div>
+            </motion.div>
           </div>
         )}
       </div>
@@ -213,7 +211,7 @@ const Testimonials = () => {
         )}
       </AnimatePresence>
 
-      <style jsx>{`
+      <style>{`
         .testimonials-section {
           background: #f8fafc;
           position: relative;

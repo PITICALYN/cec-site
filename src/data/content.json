@@ -40,22 +40,10 @@
     "values": {
       "title": "Valores",
       "list": [
-        {
-          "title": "Compromisso com a Qualidade",
-          "text": "Garantimos que todos os nossos cursos atendam aos mais altos padrões de ensino e prática industrial."
-        },
-        {
-          "title": "Ética e Integridade",
-          "text": "Agimos com transparência e respeito em todas as nossas relações, tanto com nossos clientes quanto com nossos colaboradores."
-        },
-        {
-          "title": "Inovação Contínua",
-          "text": "Buscamos constantemente novas metodologias e tecnologias para aprimorar nossos treinamentos e oferecer as melhores soluções aos nossos alunos."
-        },
-        {
-          "title": "Foco no Aluno",
-          "text": "O sucesso dos nossos alunos é o nosso principal objetivo. Estamos comprometidos em oferecer um ambiente de aprendizado que estimule o desenvolvimento profissional e pessoal."
-        }
+        { "title": "Compromisso com a Qualidade", "text": "Garantimos que todos os nossos cursos atendam aos os mais altos padrões de ensino e prática industrial." },
+        { "title": "Ética e Integridade", "text": "Agimos com transparência e respeito em todas as nossas relações, tanto com nossos clientes quanto com nossos colaboradores." },
+        { "title": "Inovação Contínua", "text": "Buscamos constantemente novas metodologias e tecnologias para aprimorar nossos treinamentos e oferecer as melhores soluções aos nossos alunos." },
+        { "title": "Foco no Aluno", "text": "O sucesso dos nossos alunos é o nosso principal objetivo. Estamos comprometidos em oferecer um ambiente de aprendizado que estimule o desenvolvimento profissional e pessoal." }
       ]
     },
     "quote": "Deixe o conhecimento libertar você!"
@@ -88,7 +76,8 @@
         "description": "Capacitação completa para profissionais de controle de qualidade, focada em normas técnicas e medições de precisão em estruturas metálicas.",
         "duration": "100 Horas",
         "type": "Presencial + Híbrido",
-        "category": "MAIS PROCURADO"
+        "category": "MAIS PROCURADO",
+        "image": "https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=2000&auto=format&fit=crop"
       },
       {
         "id": 2,
@@ -96,7 +85,8 @@
         "description": "Treinamento avançado em medições tridimensionais e locação industrial utilizando equipamentos de topografia de alta precisão.",
         "duration": "80 Horas",
         "type": "Equipamento Incluso",
-        "category": "ESPECIALIZAÇÃO"
+        "category": "ESPECIALIZAÇÃO",
+        "image": "https://images.unsplash.com/photo-1504917595217-d4dc5f566f63?q=80&w=2000&auto=format&fit=crop"
       },
       {
         "id": 3,
@@ -104,7 +94,8 @@
         "description": "Especialização em controle dimensional com foco em Máquinas de Medir por Coordenadas (MMC), garantindo precisão milimétrica.",
         "duration": "60 Horas",
         "type": "Tecnologia MMC",
-        "category": "ESPECIALIZAÇÃO"
+        "category": "ESPECIALIZAÇÃO",
+        "image": "https://images.unsplash.com/photo-1534398079543-7ae6d016b86a?q=80&w=2000&auto=format&fit=crop"
       },
       {
         "id": 4,
@@ -112,7 +103,8 @@
         "description": "Domine técnicas de alinhamento e nivelamento industrial utilizando Teodolito e Optical Tooling para grandes montagens.",
         "duration": "90 Horas",
         "type": "Alinhamento Óptico",
-        "category": "ESPECIALIZAÇÃO"
+        "category": "ESPECIALIZAÇÃO",
+        "image": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2000&auto=format&fit=crop"
       }
     ]
   },
@@ -137,11 +129,23 @@
   },
   "footer": {
     "brand_desc": "Referência em capacitação técnica e soluções de engenharia para o setor industrial.",
+    "links_rapidos": [
+      { "label": "Início", "url": "/" },
+      { "label": "Treinamentos", "url": "/cursos" },
+      { "label": "Sobre Nós", "url": "/sobre-nos" },
+      { "label": "Fale Conosco", "url": "/contato" }
+    ],
+    "links_institucional": [
+      { "label": "Termos de Uso", "url": "/termos" },
+      { "label": "Política de Privacidade", "url": "/privacidade" },
+      { "label": "Canal de Ouvidoria", "url": "/ouvidoria" }
+    ],
     "newsletter": {
       "title": "Newsletter",
       "text": "Receba novidades sobre novos treinamentos e cursos."
     },
     "copyright": "© 2026 CEC Engenharia e Capacitação. Todos os direitos reservados.",
-    "links_institucional": ["Sobre Nós", "Termos de Uso", "Política de Privacidade", "Ouvidoria"]
+    "cnpj": "CNPJ: 00.000.000/0001-00",
+    "address": "Rio de Janeiro, RJ"
   }
 }
