@@ -129,38 +129,38 @@ const EditableSlot = ({ path, initialValue, className = "", tagName: Tag = "div"
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         .editable-slot-container {
           position: relative;
           display: inline-block;
           width: 100%;
           min-height: 20px;
+          outline: 2px dashed rgba(0, 75, 73, 0.35);
+          outline-offset: 2px;
+          border-radius: 6px;
         }
         .slot-edit-trigger {
           position: absolute;
-          top: -10px;
-          right: -10px;
+          top: 4px;
+          right: 4px;
           background: var(--primary);
           color: white;
           border: none;
           border-radius: 50%;
-          width: 24px;
-          height: 24px;
+          width: 28px;
+          height: 28px;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          z-index: 50;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-          opacity: 0;
-          transition: all 0.3s ease;
-        }
-        .editable-slot-container:hover .slot-edit-trigger {
+          z-index: 100;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
           opacity: 1;
-          top: 0;
-          right: 0;
+          transition: transform 0.2s ease;
         }
-        
+        .slot-edit-trigger:hover {
+          transform: scale(1.15);
+        }
         /* Modal Styles */
         .slot-modal-overlay {
           position: fixed;

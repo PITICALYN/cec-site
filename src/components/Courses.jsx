@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
 import EditableSlot from './EditableSlot';
+import DraggableInEdit from './DraggableInEdit';
 
 const Courses = () => {
   const { content, isEditing, addItemToList, removeItemFromList } = useEdit();
@@ -64,9 +65,14 @@ const Courses = () => {
                       <Trash2 size={16} />
                     </button>
                   )}
-                  <span className="card-badge">
-                    <EditableText path={`courses_section.courses.${index}.category`} initialValue={course.category} />
-                  </span>
+                  <DraggableInEdit
+                    path={`courses_section.courses.${index}.badge_pos`}
+                    initialPos={{ top: '12px', left: '12px' }}
+                  >
+                    <span className="card-badge">
+                      <EditableText path={`courses_section.courses.${index}.category`} initialValue={course.category} />
+                    </span>
+                  </DraggableInEdit>
 
                   {/* Imagem editável por curso */}
                   <EditableSlot

@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { EditProvider } from './context/EditContext';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import ManageUsers from './pages/ManageUsers';
 import ManageTestimonials from './pages/ManageTestimonials';
+import AdminUsers from './pages/AdminUsers';
 import ProtectedRoute from './components/ProtectedRoute';
 
 // Novas Páginas Institucionais e de Conversão
@@ -48,7 +48,7 @@ function App() {
           path="/admin/users" 
           element={
             <ProtectedRoute requireMaster={true}>
-              <ManageUsers />
+              <AdminUsers />
             </ProtectedRoute>
           } 
         />

@@ -26,6 +26,27 @@ export const EditProvider = ({ children }) => {
     return () => subscription.unsubscribe();
   }, []);
 
+  // Deep merge: preserva defaults locais para chaves ausentes no banco
+  const deepMerge = (base, override) => {
+    if (!override) return base;
+    const result = { ...base };
+    for (const key of Object.keys(override)) {
+      if (
+        override[key] !== null &&
+        typeof override[key] === 'object' &&
+        !Array.isArray(override[key]) &&
+        typeof base[key] === 'object' &&
+        base[key] !== null &&
+        !Array.isArray(base[key])
+      ) {
+        result[key] = deepMerge(base[key], override[key]);
+      } else {
+        result[key] = override[key];
+      }
+    }
+    return result;
+  };
+
   const fetchSiteContent = async () => {
     try {
       const { data, error } = await supabase
@@ -37,11 +58,8 @@ export const EditProvider = ({ children }) => {
       if (error) {
         console.warn('Usando conteúdo local (tabela site_content não encontrada ou vazia).');
       } else if (data && data.data) {
-        // Fusão inteligente: mantém o que tem no local e sobrepõe apenas o que vem do banco
-        setContent(prev => ({
-          ...prev,
-          ...data.data
-        }));
+        // Deep merge: mantém defaults locais para chaves que não existem no banco
+        setContent(prev => deepMerge(prev, data.data));
       }
     } catch (err) {
       console.error('Erro ao buscar conteúdo:', err);

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
 import EditableSlot from './EditableSlot';
+import DraggableInEdit from './DraggableInEdit';
 
 const Hero = () => {
   const { content } = useEdit();
@@ -99,22 +100,27 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Selo Abendi Híbrido (Texto ou Imagem) */}
-            <div className="cert-badge-floating">
-              <EditableSlot 
-                path="hero.cert_badge" 
-                initialValue={hero.cert_badge} 
-                className="cert-badge-img"
-                tagName="span"
-                style={{
-                  fontSize: '0.7rem',
-                  fontWeight: '700',
-                  color: 'var(--primary)',
-                  textAlign: 'center',
-                  display: 'block'
-                }}
-              />
-            </div>
+            {/* Selo Abendi - Arrastável no modo edição */}
+            <DraggableInEdit
+              path="hero.cert_badge_pos"
+              initialPos={{ top: '20px', left: '60%' }}
+            >
+              <div className="cert-badge-floating">
+                <EditableSlot
+                  path="hero.cert_badge"
+                  initialValue={hero.cert_badge}
+                  className="cert-badge-img"
+                  tagName="span"
+                  style={{
+                    fontSize: '0.7rem',
+                    fontWeight: '700',
+                    color: 'var(--primary)',
+                    textAlign: 'center',
+                    display: 'block'
+                  }}
+                />
+              </div>
+            </DraggableInEdit>
           </div>
         </motion.div>
       </div>

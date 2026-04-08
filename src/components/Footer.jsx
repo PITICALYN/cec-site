@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Camera, Share2, MapPin, FileText, Plus, Trash2 } from 'lucide-react';
 import { useEdit } from '../context/EditContext';
 import EditableText from './EditableText';
+import MapWidget from './MapWidget';
 
 const Footer = () => {
   const { content, isEditing, updateContent } = useEdit();
@@ -129,7 +130,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Newsletter */}
+        {/* Newsletter + Mapa */}
         <div className="footer-newsletter">
           <h4>
             <EditableText path="footer.newsletter.title" initialValue={footer.newsletter.title} />
@@ -140,6 +141,11 @@ const Footer = () => {
           <div className="newsletter-input">
             <input type="email" placeholder="Seu e-mail" />
             <button className="btn-send"><Mail size={18} /></button>
+          </div>
+
+          {/* Mini Mapa */}
+          <div className="map-section">
+            <MapWidget />
           </div>
         </div>
       </div>
@@ -211,6 +217,7 @@ const Footer = () => {
         .newsletter-input { display: flex; gap: 0.5rem; margin-top: 1rem; }
         .newsletter-input input { flex: 1; padding: 0.65rem 0.9rem; border-radius: 10px; border: 1px solid var(--border); outline: none; font-size: 0.9rem; }
         .btn-send { background: var(--primary); color: white; width: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; border: none; cursor: pointer; flex-shrink: 0; }
+        .map-section { margin-top: 1.5rem; }
 
         .footer-bottom { padding: 1.5rem 0; border-top: 1px solid var(--border); background: white; }
         .bottom-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; color: var(--text-muted); font-size: 0.82rem; }

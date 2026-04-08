@@ -24,16 +24,29 @@ const ManageTestimonials = () => {
 
   const fetchTestimonials = async () => {
     try {
-      const { data, error } = await supabase
+      // Tenta com order_position (pode não existir ainda no banco)
+      let { data, error } = await supabase
         .from('testimonials')
         .select('*')
         .order('order_position', { ascending: true, nullsFirst: false })
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      // Se falhar (coluna não existe), tenta sem order_position
+      if (error) {
+        console.warn('order_position não existe ainda, usando fallback:', error.message);
+        const fallback = await supabase
+          .from('testimonials')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (fallback.error) throw fallback.error;
+        data = fallback.data;
+      }
+
       setTestimonials(data || []);
     } catch (err) {
       console.error('Erro ao carregar depoimentos:', err);
+      setTestimonials([]);
     } finally {
       setLoading(false);
     }
